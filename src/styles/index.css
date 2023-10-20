@@ -1,12 +1,160 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgb(110, 102, 98);
+    color: white;
+}
 
-/* 
+h1 {
+  text-align: center;
+}
 
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
+/* ----------- MENU ----------- */
 
-*/
+.container-inputs {
+    background: rgba(24, 22, 22, 0.4);
+    width: 50%;
+    margin: 0 auto;
+}
+
+.buttonX, .buttonO {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(24, 22, 22, 0.4);
+    border: none;
+    border-radius: 0%;
+    font-size: 50px;
+  }
+  
+.buttonX {
+  color: rgb(236, 236, 121);
+}
+
+.buttonO {
+  color: rgb(121, 180, 236);
+}
+
+.button-restart {
+    border-radius: 10%;
+    margin-top: 10px;
+    padding: 0px 10px;
+}
+
+.buttonX:hover, .buttonO:hover {
+  background-color: rgba(114, 107, 107, 0.4);
+}
+
+input {
+  width: 200px;
+  margin: 0 5px;
+}
+
+/* -------- Board, tiles, strike -------- */
+
+.board {
+  display: grid;
+  grid-template-columns: 120px 120px 120px;
+  grid-template-rows: 120px 120px 120px;
+  cursor: pointer;
+  position: relative;
+}
+
+.tile {
+  color: currentColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile-X {
+    font-size: 40px;
+    color: rgb(139, 149, 153);
+    font-weight: bold;
+}
+
+.right-border {
+  border-right: 0.2em solid rgb(124, 123, 123);
+}
+
+.bottom-border {
+  border-bottom: 0.2em solid rgb(124, 123, 123);
+}
+
+.x-hover:hover::after {
+  content: "X";
+  opacity: 0.4;
+}
+
+.o-hover:hover::after {
+  content: "O";
+  opacity: 0.4;
+}
+
+.strike {
+  position: absolute;
+  background-color: darkorange;
+}
+
+.strike-row-1 {
+  width: 100%;
+  height: 4px;
+  top: 15%;
+}
+.strike-row-2 {
+  width: 100%;
+  height: 4px;
+  top: 48%;
+}
+.strike-row-3 {
+  width: 100%;
+  height: 4px;
+  top: 83%;
+}
+.strike-column-1 {
+  height: 100%;
+  width: 4px;
+  left: 15%;
+}
+.strike-column-2 {
+  height: 100%;
+  width: 4px;
+  left: 48%;
+}
+.strike-column-3 {
+  height: 100%;
+  width: 4px;
+  left: 83%;
+}
+.strike-diagonal-1 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(45deg);
+}
+.strike-diagonal-2 {
+  width: 90%;
+  height: 4px;
+  top: 50%;
+  left: 5%;
+  transform: skewY(-45deg);
+}
+
+.game-over {
+  text-align: center;
+  border: #5468ff 8px;
+  border-style: dotted;
+  padding: 10px;
+  margin-top: 50px;
+  font-size: 1.5em;
+}
+
+.reset-button {
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #0074a6;
+  color: white;
+  width: 100%;
+  font-size: 1.5em;
+}
