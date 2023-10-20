@@ -84,11 +84,15 @@ input {
 .x-hover:hover::after {
   content: "X";
   opacity: 0.4;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .o-hover:hover::after {
   content: "O";
   opacity: 0.4;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .strike {

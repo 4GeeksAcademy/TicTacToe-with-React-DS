@@ -10,15 +10,27 @@ const TicTacToe = () => {
 	const [playerTurn, setPlayerTurn] = useState(playerX);
 
 	const handleTileClick = (i) => {
-		console.log(i);
+
+		if (tiles[i] !== null) {
+			return;
+		}
+
+		const newTiles = [...tiles];
+		newTiles[i] = playerTurn;
+		setTiles(newTiles);
+		if (playerTurn === playerX) {
+			setPlayerTurn(playerO);
+		} else {
+			setPlayerTurn(playerX);
+		}
 	}
 
 	return (
 		<>
 			<div>
 				<h1 className="pt-3">Tic Tac Toe</h1>
-				<h3 className="text-center my-4">It is "PLAYER" turn!</h3>
-				<Board tiles={tiles} onTileClick={handleTileClick} />
+				<h3 className="text-center my-4">It is {playerTurn} turn!</h3>
+				<Board playerTurn={playerTurn} tiles={tiles} onTileClick={handleTileClick} />
 			</div>
 		</>
 	);
