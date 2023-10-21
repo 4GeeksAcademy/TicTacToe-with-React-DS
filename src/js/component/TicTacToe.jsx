@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Board from "./Board.jsx";
+import GameOver from "./GameOver.jsx";
+import GameState from "./GameState.js";
+import Reset from "./Reset.jsx";
 
 const playerX = "X";
 const playerO = "O";
@@ -19,7 +22,7 @@ const winningCombinations = [
 	{ combo: [2, 4, 6], strikeClass: "strike-diagonal-2" }
 ];
 
-function checkWinner(tiles, setStrikeClass) {
+function checkWinner(tiles, setStrikeClass, setGameState) {
 	for (const { combo, strikeClass } of winningCombinations) {
 		const tileValue1 = tiles[combo[0]];
 		const tileValue2 = tiles[combo[1]];
@@ -31,7 +34,18 @@ function checkWinner(tiles, setStrikeClass) {
 			tileValue1 === tileValue3
 		) {
 			setStrikeClass(strikeClass)
+			if (tileValue1 === playerX) {
+				setGameState(GameState.playerXwins);
+			} else {
+				setGameState(GameState.playerOwins)
+			}
+			return;
 		}
+	}
+
+	const gameDraw = tiles.every((tile) => tile !== null);
+	if (gameDraw) {
+		setGameState(GameState.draw);
 	}
 }
 
@@ -40,8 +54,12 @@ const TicTacToe = () => {
 	const [tiles, setTiles] = useState(Array(9).fill(null));
 	const [playerTurn, setPlayerTurn] = useState(playerX);
 	const [strikeClass, setStrikeClass] = useState();
+	const [gameState, setGameState] = useState(GameState.inProgress);
 
 	const handleTileClick = (i) => {
+		if (gameState !== GameState.inProgress) {
+			return;
+		}
 
 		if (tiles[i] !== null) {
 			return;
@@ -57,8 +75,16 @@ const TicTacToe = () => {
 		}
 	}
 
+	const handleReset = () => {
+		setGameState(GameState.inProgress);
+		setTiles(Array(9).fill(null));
+		setPlayerTurn(playerX);
+		setStrikeClass(null);
+
+	}
+
 	useEffect(() => {
-		checkWinner(tiles, setStrikeClass);
+		checkWinner(tiles, setStrikeClass, setGameState);
 	}, [tiles]);
 
 	return (
@@ -72,6 +98,8 @@ const TicTacToe = () => {
 					onTileClick={handleTileClick}
 					strikeClass={strikeClass}
 				/>
+				<GameOver gameState={gameState} />
+				<Reset onReset={handleReset} />
 			</div>
 		</>
 	);

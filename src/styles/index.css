@@ -147,7 +147,7 @@ input {
 
 .game-over {
   text-align: center;
-  border: #5468ff 8px;
+  border: rgb(177, 189, 228) 8px;
   border-style: dotted;
   padding: 10px;
   margin-top: 50px;
@@ -156,8 +156,8 @@ input {
 
 .reset-button {
   margin-top: 50px;
-  padding: 20px;
-  background-color: #0074a6;
+  padding: 15px;
+  background-color: rgba(177, 189, 228, 0.5);
   color: white;
   width: 100%;
   font-size: 1.5em;
