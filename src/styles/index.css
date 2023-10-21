@@ -97,7 +97,7 @@ input {
 
 .strike {
   position: absolute;
-  background-color: darkorange;
+  background-color: rgb(177, 189, 228);
 }
 
 .strike-row-1 {

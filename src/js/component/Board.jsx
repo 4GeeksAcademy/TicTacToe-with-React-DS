@@ -2,7 +2,7 @@ import React from "react";
 import Strike from "./Strike.jsx";
 import Tile from "./Tile.jsx"
 
-const Board = ({ tiles, onTileClick, playerTurn }) => {
+const Board = ({ tiles, onTileClick, playerTurn, strikeClass }) => {
     return (
         <div className="board">
 
@@ -38,7 +38,7 @@ const Board = ({ tiles, onTileClick, playerTurn }) => {
                 value={tiles[8]}
             />
 
-            <Strike />
+            <Strike strikeClass={strikeClass} />
         </div>
     );
 }
